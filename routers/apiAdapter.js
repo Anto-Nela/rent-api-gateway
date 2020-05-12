@@ -9,7 +9,6 @@ module.exports = (baseURL,token) => {
   return axios.create({
     baseURL: baseURL,
     headers : {
-      //"apikey": process.env.JWT_KEY,
       'Authorization': 'Bearer '+ token
     }
   });

@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const apiAdapter = require("./apiAdapter");
+const apiAdapter2= require('./apiAdapter2');
 const checkAuth= require('../check-auth');
 const jwt= require('jsonwebtoken');
 const ejs=require('ejs');
@@ -91,13 +92,16 @@ router.get("/nearme/:lat/:long", (req, res) => {
 
 
 router.get("/searchHomes", (req, res) => {
-console.log(req.query);
-  api.get(req.path,{
-    "cmimiMax": $input.params().cmimiMax,
-    "cmimiMin": $input.params().cmimiMin,
-    "qytet": $input.params().qytet,
-    "rooms": $input.params().rooms
-}).then((resp) => {
+//console.log(req.query);
+const api = apiAdapter2(BASE_URL,req);
+
+api.get(req.path, {params : {
+  qytet: req.query.qytet,
+  cmimiMax: req.query.cmimiMax,
+  cmimiMin: req.query.cmimiMin,
+  rooms: req.query.rooms
+}}
+).then((resp) => {
     res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
@@ -184,6 +188,102 @@ router.get("/landlords/:id", (req, res) => {
     res.json(error.message);
   });
 });
+
+
+router.delete("/delete/landlords/:id",checkAuth, (req, res) => {
+  const token=req.headers.authorization.split(' ')[1];
+  const api = apiAdapter(BASE_URL,token);
+
+  api.delete(req.path).then((resp) => {
+    res.json(resp.data);
+  }).catch((error) => {
+    res.json(error.message);
+  });
+});
+
+
+router.delete("/delete/users/:id",checkAuth, (req, res) => {
+  const token=req.headers.authorization.split(' ')[1];
+  const api = apiAdapter(BASE_URL,token);
+
+  api.delete(req.path).then((resp) => {
+    res.json(resp.data);
+  }).catch((error) => {
+    res.json(error.message);
+  });
+});
+
+
+router.delete("/delete/homes/:id",checkAuth, (req, res) => {
+  const token=req.headers.authorization.split(' ')[1];
+  const api = apiAdapter(BASE_URL,token);
+
+  api.delete(req.path).then((resp) => {
+    res.json(resp.data);
+  }).catch((error) => {
+    res.json(error.message);
+  });
+});
+
+
+router.post('/add/landlords/',checkAuth, (req, res) => {
+  const token=req.headers.authorization.split(' ')[1];
+  const api = apiAdapter(BASE_URL,token);
+  
+    api.post(req.path, req.body).then(resp => {
+      res.json(resp.data);
+    }).catch((error) => {
+      res.json(error.message);
+    });
+  });
+
+
+  router.post('/add/homes/',checkAuth, (req, res) => {
+    const token=req.headers.authorization.split(' ')[1];
+    const api = apiAdapter(BASE_URL,token);
+    
+      api.post(req.path, req.body).then(resp => {
+        res.json(resp.data);
+      }).catch((error) => {
+        res.json(error.message);
+      });
+    });
+
+    
+  router.put('/update/users/:id',checkAuth, (req, res) => {
+    const token=req.headers.authorization.split(' ')[1];
+    const api = apiAdapter(BASE_URL,token);
+
+        api.put(req.path, req.body).then(resp => {
+          res.json(resp.data);
+        }).catch((error) => {
+          res.json(error.message);
+        });
+      });
+
+
+  router.put('/update/homes/:id',checkAuth, (req, res) => {
+    const token=req.headers.authorization.split(' ')[1];
+    const api = apiAdapter(BASE_URL,token);
+  
+        api.put(req.path, req.body).then(resp => {
+          res.json(resp.data);
+        }).catch((error) => {
+           res.json(error.message);
+        });
+      });
+  
+  
+ router.put('/update/landlords/:id',checkAuth, (req, res) => {
+    const token=req.headers.authorization.split(' ')[1];
+    const api = apiAdapter(BASE_URL,token);
+        
+      api.put(req.path, req.body).then(resp => {
+                res.json(resp.data);
+              }).catch((error) => {
+              res.json(error.message);
+        });
+      });      
 
 
 module.exports = router;
