@@ -91,7 +91,7 @@ router.get("/nearme/:lat/:long", (req, res) => {
 });
 
 
-router.get("/searchHomes", (req, res) => {
+router.get("/searchHomes/:faqe", (req, res) => {
 //console.log(req.query);
 const api = apiAdapter2(BASE_URL,req);
 
