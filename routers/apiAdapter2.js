@@ -7,10 +7,11 @@ module.exports = (baseURL,req) => {
   return axios.create({
     baseURL: baseURL,
     params : {
-      qytet: req.query.qytet,
+      rruga: req.query.rruga,
       cmimiMax: req.query.cmimiMax,
       cmimiMin: req.query.cmimiMin,
-      rooms: req.query.rooms
+      nrdhoma: req.query.nrdhoma,
+      nrpersona: req.query.nrpersona
     }
   });
 }

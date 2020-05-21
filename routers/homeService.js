@@ -96,10 +96,11 @@ router.get("/searchHomes", (req, res) => {
 const api = apiAdapter2(BASE_URL,req);
 
 api.get(req.path, {params : {
-  qytet: req.query.qytet,
+  rruga: req.query.rruga,
   cmimiMax: req.query.cmimiMax,
   cmimiMin: req.query.cmimiMin,
-  rooms: req.query.rooms
+  nrdhoma: req.query.nrdhoma,
+  nrpersona: req.query.nrpersona
 }}
 ).then((resp) => {
     res.json(resp.data);
