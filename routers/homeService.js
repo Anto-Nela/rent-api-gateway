@@ -8,7 +8,7 @@ const ejs=require('ejs');
 
 require('dotenv/config');
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://rent-project.herokuapp.com";
 const api = apiAdapter(BASE_URL);
 
 
@@ -285,6 +285,5 @@ router.post('/add/landlords/',checkAuth, (req, res) => {
               res.json(error.message);
         });
       });      
-
 
 module.exports = router;
