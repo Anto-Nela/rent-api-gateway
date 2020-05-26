@@ -160,11 +160,11 @@ router.get("/searchHomes/:faqe", (req, res) => {
 const api = apiAdapter2(BASE_URL,req);
 
 api.get(req.path, {params : {
-  rruga: req.query.rruga,
-  cmimiMax: req.query.cmimiMax,
-  cmimiMin: req.query.cmimiMin,
-  nrdhoma: req.query.nrdhoma,
-  nrpersona: req.query.nrpersona
+      street: req.query.street,
+      maxPrice: req.query.maxPrice,
+      minPrice: req.query.minPrice,
+      rooms: req.query.rooms,
+      tenants: req.query.tenants
 }}
 ).then((resp) => {
   if (resp.data.statusCode!=null){
