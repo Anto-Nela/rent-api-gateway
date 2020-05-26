@@ -14,7 +14,15 @@ const api = apiAdapter(BASE_URL);
 
 router.post('/register', (req, res) => {
   api.post(req.path, req.body).then(resp => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -23,7 +31,15 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
   api.post(req.path, req.body).then(resp => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -35,7 +51,15 @@ const token=req.headers.authorization.split(' ')[1];
 const api = apiAdapter(BASE_URL,token);
 
   api.post(req.path, req.body).then(resp => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -47,7 +71,15 @@ router.post("/logout", (req, res) => {
   const api = apiAdapter(BASE_URL,token);
 
     api.post(req.path, req.body).then(resp => {
-    res.json(resp.data);
+      if (resp.data.statusCode!=null){
+        const code=resp.data.statusCode+resp.data.reasonCode;
+        console.log(code);
+      if(code==204){
+        res.status(400).json(resp.data);
+      }
+      else res.status(code).json(resp.data);
+       } 
+        else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -56,7 +88,15 @@ router.post("/logout", (req, res) => {
 
 router.get("/verify/:uuid", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -64,7 +104,15 @@ router.get("/verify/:uuid", (req, res) => {
 
 router.get("/users", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -75,7 +123,15 @@ router.get("/users/:id",checkAuth, (req, res) => {
  const api = apiAdapter(BASE_URL,token); 
 
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -84,7 +140,15 @@ router.get("/users/:id",checkAuth, (req, res) => {
 
 router.get("/nearme/:lat/:long", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -103,16 +167,32 @@ api.get(req.path, {params : {
   nrpersona: req.query.nrpersona
 }}
 ).then((resp) => {
-    res.json(resp.data);
+  if (resp.data.statusCode!=null){
+    const code=resp.data.statusCode+resp.data.reasonCode;
+    console.log(code);
+  if(code==204){
+    res.status(400).json(resp.data);
+  }
+  else res.status(code).json(resp.data);
+   } 
+    else res.json(resp.data);
   }).catch((error) => {
-    res.json(error.message);
+   res.json(error.message);
   });
 });
 
 
 router.get("/homes/premiumHomes", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -121,7 +201,15 @@ router.get("/homes/premiumHomes", (req, res) => {
 
 router.get("/homes/normalHomes", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -130,7 +218,15 @@ router.get("/homes/normalHomes", (req, res) => {
 
 router.get("/homes/city/:place", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -139,7 +235,15 @@ router.get("/homes/city/:place", (req, res) => {
 
 router.get("/homes/price/:cmimiMax/:cmimiMin", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -148,7 +252,15 @@ router.get("/homes/price/:cmimiMax/:cmimiMin", (req, res) => {
 
 router.get("/homes/rooms/:nr_rooms", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -157,7 +269,15 @@ router.get("/homes/rooms/:nr_rooms", (req, res) => {
 
 router.get("/homes", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -166,7 +286,15 @@ router.get("/homes", (req, res) => {
 
 router.get("/homes/:id", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -175,7 +303,15 @@ router.get("/homes/:id", (req, res) => {
 
 router.get("/landlords", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -184,7 +320,15 @@ router.get("/landlords", (req, res) => {
 
 router.get("/landlords/:id", (req, res) => {
   api.get(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -196,7 +340,15 @@ router.delete("/delete/landlords/:id",checkAuth, (req, res) => {
   const api = apiAdapter(BASE_URL,token);
 
   api.delete(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -208,7 +360,15 @@ router.delete("/delete/users/:id",checkAuth, (req, res) => {
   const api = apiAdapter(BASE_URL,token);
 
   api.delete(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -220,7 +380,15 @@ router.delete("/delete/homes/:id",checkAuth, (req, res) => {
   const api = apiAdapter(BASE_URL,token);
 
   api.delete(req.path).then((resp) => {
-    res.json(resp.data);
+    if (resp.data.statusCode!=null){
+      const code=resp.data.statusCode+resp.data.reasonCode;
+      console.log(code);
+    if(code==204){
+      res.status(400).json(resp.data);
+    }
+    else res.status(code).json(resp.data);
+     } 
+      else res.json(resp.data);
   }).catch((error) => {
     res.json(error.message);
   });
@@ -232,7 +400,15 @@ router.post('/add/landlords/',checkAuth, (req, res) => {
   const api = apiAdapter(BASE_URL,token);
   
     api.post(req.path, req.body).then(resp => {
-      res.json(resp.data);
+      if (resp.data.statusCode!=null){
+        const code=resp.data.statusCode+resp.data.reasonCode;
+        console.log(code);
+      if(code==204){
+        res.status(400).json(resp.data);
+      }
+      else res.status(code).json(resp.data);
+       } 
+        else res.json(resp.data);
     }).catch((error) => {
       res.json(error.message);
     });
@@ -244,7 +420,15 @@ router.post('/add/landlords/',checkAuth, (req, res) => {
     const api = apiAdapter(BASE_URL,token);
     
       api.post(req.path, req.body).then(resp => {
-        res.json(resp.data);
+        if (resp.data.statusCode!=null){
+          const code=resp.data.statusCode+resp.data.reasonCode;
+          console.log(code);
+        if(code==204){
+          res.status(400).json(resp.data);
+        }
+        else res.status(code).json(resp.data);
+         } 
+          else res.json(resp.data);
       }).catch((error) => {
         res.json(error.message);
       });
@@ -256,7 +440,15 @@ router.post('/add/landlords/',checkAuth, (req, res) => {
     const api = apiAdapter(BASE_URL,token);
 
         api.put(req.path, req.body).then(resp => {
-          res.json(resp.data);
+          if (resp.data.statusCode!=null){
+            const code=resp.data.statusCode+resp.data.reasonCode;
+            console.log(code);
+          if(code==204){
+            res.status(400).json(resp.data);
+          }
+          else res.status(code).json(resp.data);
+           } 
+            else res.json(resp.data);
         }).catch((error) => {
           res.json(error.message);
         });
@@ -268,7 +460,15 @@ router.post('/add/landlords/',checkAuth, (req, res) => {
     const api = apiAdapter(BASE_URL,token);
   
         api.put(req.path, req.body).then(resp => {
-          res.json(resp.data);
+          if (resp.data.statusCode!=null){
+            const code=resp.data.statusCode+resp.data.reasonCode;
+            console.log(code);
+          if(code==204){
+            res.status(400).json(resp.data);
+          }
+          else res.status(code).json(resp.data);
+           } 
+            else res.json(resp.data);
         }).catch((error) => {
            res.json(error.message);
         });
@@ -280,7 +480,15 @@ router.post('/add/landlords/',checkAuth, (req, res) => {
     const api = apiAdapter(BASE_URL,token);
         
       api.put(req.path, req.body).then(resp => {
-                res.json(resp.data);
+        if (resp.data.statusCode!=null){
+          const code=resp.data.statusCode+resp.data.reasonCode;
+          console.log(code);
+        if(code==204){
+          res.status(400).json(resp.data);
+        }
+        else res.status(code).json(resp.data);
+         } 
+          else res.json(resp.data);
               }).catch((error) => {
               res.json(error.message);
         });
